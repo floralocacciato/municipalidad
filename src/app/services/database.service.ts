@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class DatabaseService {
 
-  private apiUrl = 'http://localhost/api-php/public/index.php';
+  private apiUrl = 'http://localhost/api-municipalidad/public/index.php';
   private currentUserKey = 'currentUser';
   constructor(private http: HttpClient) { }
 

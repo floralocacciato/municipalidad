@@ -120,8 +120,8 @@ export class UsuariosComponent implements OnInit {
     });
   }
   
-  bajaUsuario(id: number) {
-    this.database.baja(id).subscribe({
+  bajaUsuario(Id: number) {
+    this.database.baja(Id).subscribe({
       next: (response) => {
         console.log(response);  // Revisa qué está devolviendo la API
         if (response && response['resultado'] === 'OK') {

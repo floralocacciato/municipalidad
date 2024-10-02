@@ -14,7 +14,7 @@
       </div>
       <div>
         <label for="email">email:</label>
-        <input id="email" formControlName="email" type="eemail" />
+        <input id="email" formControlName="email" type="email" />
         <!-- Validación: si el campo es inválido (por ejemplo, un formato de eemail incorrecto) y ha sido tocado, se muestra un mensaje de error -->
         <div *ngIf="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched">
           Ingresa un eemail válido
