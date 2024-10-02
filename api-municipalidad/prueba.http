@@ -1,0 +1,7 @@
+GET http://localhost/api-municipalidad/controllers/UserController.php
+Content-Type: application/json
+{
+  "nombre": "John",
+  "email": "john@example.com",
+  "pass": "password123"
+}
