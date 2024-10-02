@@ -1,0 +1,28 @@
+<p>inicio-sesion works!</p>
+<div class="container">
+    <div class="row">
+        <h1>Inicia Sesión</h1>
+
+        <i class="material-icons" style="font-size: 200px;">person</i>
+        
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill">
+                <mat-label>Ingrese su email:</mat-label>
+                <input matInput placeholder="Ej: flor@gmail.com" formControlName="email" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Ingrese su contraseña:</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" #input minlength="6" formControlName="pass" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-hint align="start">Mínimo: 6/{{ input.value.length }}</mat-hint>
+            </mat-form-field>
+
+            <button class="boton" mat-raised-button color="primary" type="submit">Iniciar Sesión</button>
+        </form>
+
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </div>
+</div>

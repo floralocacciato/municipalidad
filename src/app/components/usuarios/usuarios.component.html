@@ -1,0 +1,77 @@
+<div>
+    <h2>Crear Usuario</h2>
+    <!-- Formulario que utiliza FormGroup (Reactive Forms) de Angular -->
+    <form [formGroup]="usuarioForm" (ngSubmit)="submitForm()">
+      <!-- El formGroup 'usuarioForm' está enlazado con el formulario. Cuando se envía el formulario, se ejecuta la función 'submitForm()' -->
+      <div>
+        <label for="nombre">Nombre:</label>
+        <!-- Input que utiliza 'formControlName' para enlazar el campo 'nombre' del formulario reactivo -->
+        <input id="nombre" formControlName="nombre" type="text" />
+        <!-- Validación: si el campo es inválido y ha sido tocado, se muestra un mensaje de error -->
+        <div *ngIf="usuarioForm.get('nombre')?.invalid && usuarioForm.get('nombre')?.touched">
+          Nombre es requerido
+        </div>
+      </div>
+      <div>
+        <label for="email">email:</label>
+        <input id="email" formControlName="email" type="eemail" />
+        <!-- Validación: si el campo es inválido (por ejemplo, un formato de eemail incorrecto) y ha sido tocado, se muestra un mensaje de error -->
+        <div *ngIf="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched">
+          Ingresa un eemail válido
+        </div>
+      </div>
+      <div>
+        <label for="pass">pass:</label>
+        <input id="pass" formControlName="pass" type="password" />
+        <!-- Validación: si la pass es inválida (por ejemplo, si tiene menos de 6 caracteres) y el campo ha sido tocado, se muestra un mensaje de error -->
+        <div *ngIf="usuarioForm.get('pass')?.invalid && usuarioForm.get('pass')?.touched">
+          La pass debe tener al menos 6 caracteres
+        </div>
+      </div>
+      <!-- Botón para enviar el formulario -->
+      <!-- Se deshabilita el botón si el formulario es inválido (por ejemplo, si no se han completado los campos obligatorios) -->
+      <button type="submit" [disabled]="usuarioForm.invalid">Enviar</button>
+    </form>
+    <h2>Usuarios Registrados</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>email</th>
+          <th>pass</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.Id }}</td>
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.pass }}</td>
+          <td>
+       
+          <!-- Botón para borrar el usuario -->
+          <button (click)="editarUsuario(usuario)">Modificar</button>
+          <button (click)="bajaUsuario(usuario.Id)">Borrar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Formulario para modificar usuario, solo visible si se seleccionó un usuario para editar -->
+  <form *ngIf="usuarioSeleccionado" [formGroup]="modificarUsuarioForm" (ngSubmit)="submitModificarForm()">
+    <div>
+      <label for="modificarNombre">Nombre:</label>
+      <input id="modificarNombre" formControlName="nombre" type="text" />
+    </div>
+    <div>
+      <label for="modificaremail">email:</label>
+      <input id="modificaremail" formControlName="email" type="eemail" />
+    </div>
+    <div>
+      <label for="modificarpass">pass:</label>
+      <input id="modificarpass" formControlName="pass" type="password" />
+    </div>
+    <button type="submit" [disabled]="modificarUsuarioForm.invalid">Guardar Cambios</button>
+  </form>
+  </div>
